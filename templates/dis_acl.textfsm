@@ -1,0 +1,24 @@
+Value RuleID (\d+)
+Value Action (permit|deny)
+Value Protocol (\S+)
+Value SourceIP (\S+)
+Value SourcePort (\S+)
+Value SourceWildcard (\S+)
+Value DestinationIP (\S+)
+Value DestinationWildcard (\S+)
+Value DestinationPort (\S+)
+
+Start
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+source\s+${SourceIP}\s+${SourceWildcard}\s+destination\s+${DestinationIP}\s+${DestinationWildcard}\s+source-port\s+eq\s+${SourcePort}\s+destination-port\s+eq\s+${DestinationPort}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+source\s+${SourceIP}\s+${SourceWildcard}\s+destination\s+${DestinationIP}\s+${DestinationWildcard}\s+source-port\s+eq\s+${SourcePort}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+source\s+${SourceIP}\s+${SourceWildcard}\s+destination\s+${DestinationIP}\s+${DestinationWildcard}\s+destination-port\s+eq\s+${DestinationPort}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+source\s+${SourceIP}\s+${SourceWildcard}\s+destination\s+${DestinationIP}\s+${DestinationWildcard}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+source\s+${SourceIP}\s+${SourceWildcard}\s+source-port\s+eq\s+${SourcePort}\s+destination-port\s+eq\s+${DestinationPort}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+source\s+${SourceIP}\s+${SourceWildcard}\s+source-port\s+eq\s+${SourcePort}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+source\s+${SourceIP}\s+${SourceWildcard}\s+destination-port\s+eq\s+${DestinationPort}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+destination\s+${DestinationIP}\s+${DestinationWildcard}\s+source-port\s+eq\s+${SourcePort}\s+destination-port\s+eq\s+${DestinationPort}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+destination\s+${DestinationIP}\s+${DestinationWildcard}\s+destination-port\s+eq\s+${DestinationPort}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+destination\s+${DestinationIP}\s+${DestinationWildcard}\s+source-port\s+eq\s+${SourcePort}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+source\s+${SourceIP}\s+${SourceWildcard}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}\s+destination\s+${DestinationIP}\s+${DestinationWildcard}$$ -> Continue.Record
+  ^\s+rule\s+${RuleID}\s+${Action}\s+${Protocol}$$ -> Record
